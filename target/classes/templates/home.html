@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Covid-19 Cases Tracker Application</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!--    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap.min.css">-->
+<!--    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css">-->
+
+<!--    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>-->
+<!--    <script  src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>-->
+<!--    <script  src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap.min.js"></script>-->
+<!--    <script  src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>-->
+<!--    <script  src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap.min.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css" rel="stylesheet"/>
+
+
+</head>
+<body>
+<div class="container">
+    <div class="page-header">
+        <h1 class="display-4">Covid-19 Cases Tracker Application</h1>
+        <p class="lead">Coronavirus (COVID-19) statistics data worldwide </p>
+    </div>
+
+    <div class="jumbotron">
+        <h1 class="display-4" th:text="${totalCases}"></h1>
+        <p class="lead">Total cases reported as of today</p>
+        <hr class="my-4">
+        <p>
+            <span>The number of new cases reported yesterday:</span>
+            <span th:text="${totalNewCases}"></span>
+        </p>
+
+    </div>
+    <table id="dataTable" class="table table-striped" style="width:100%">
+        <thead>
+        <tr>
+            <th data-order='asc' data-sortable="true" data-field="Country">Country</th>
+            <th>State</th>
+            <th>Total cases</th>
+            <th>New cases reported last day</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="locationStat : ${locationStats}">
+            <td th:text="${locationStat.country}" />
+            <td th:text="${locationStat.state}"/>
+            <td th:text="${locationStat.latestTotalCases}">0</td>
+            <td th:text="${locationStat.diffFromPrevDay}">0</td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+<!--<script type="text/javascript">-->
+<!--$(document).ready(function() {-->
+<!--$('#dataTable').DataTable({-->
+<!--	sortName: 'Country',-->
+<!--	pagination: true,-->
+<!--	sidePagination: "client",-->
+<!--	sortOrder: "asc",-->
+<!--	pageNumber:1,-->
+<!--	pageSize: 10,-->
+<!--	pageList: [10, 25, 50, 100],-->
+<!--} );-->
+
+<!--</script>-->
+</body>
+
+</html>
